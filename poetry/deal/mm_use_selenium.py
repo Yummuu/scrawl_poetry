@@ -1,0 +1,31 @@
+from selenium import webdriver
+import time
+
+driver = webdriver.Edge()
+driver.get("https://so.gushiwen.cn/shiwenv_2ba4f8b33cc2.aspx")
+time.sleep(1)
+driver.execute_script("OnYiwen('2ba4f8b33cc2')")
+yi = driver.find_element_by_id('contson2ba4f8b33cc2').get_attribute('innerHTML')
+time.sleep(1)
+driver.execute_script("OnYiwen('2ba4f8b33cc2')")
+time.sleep(1)
+driver.execute_script("OnZhushi('2ba4f8b33cc2')")
+zhu = driver.find_element_by_id('contson2ba4f8b33cc2').get_attribute('innerHTML')
+time.sleep(1)
+print(yi)
+print(zhu)
+
+driver.get("https://so.gushiwen.cn/shiwenv_d78d2dc95f06.aspx")
+time.sleep(1)
+driver.execute_script("OnYiwen('d78d2dc95f06')")
+yi = driver.find_element_by_id('contsond78d2dc95f06').get_attribute('innerHTML')
+time.sleep(1)
+driver.execute_script("OnYiwen('d78d2dc95f06')")
+time.sleep(1)
+driver.execute_script("OnZhushi('d78d2dc95f06')")
+zhu = driver.find_element_by_id('contsond78d2dc95f06').get_attribute('innerHTML')
+time.sleep(1)
+print(yi)
+print(zhu)
+
+driver.quit()
