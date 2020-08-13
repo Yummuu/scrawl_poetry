@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import moviepy.editor as mp
 import math
+import re
 
 #交互输入
 id_name = input("please input id_name:")
@@ -8,7 +9,7 @@ video_name = input("please input video_name:")
 
 
 def outPoetryVideo(mp3_name, text_name, version_name, video_name):
-	#读取语音
+    #读取语音
     voice = mp.AudioFileClip("./mp3/"+str(mp3_name)+".mp3")
     duration=voice.duration
     max_dur = math.ceil(duration)
@@ -52,10 +53,18 @@ def outPoetryVideo(mp3_name, text_name, version_name, video_name):
     #输出视频
     result.write_videofile("./result/"+str(text_name)+"_"+str(version_name)+".mp4", fps=24)
     pass
-
-outPoetryVideo(id_name+'_pth',id_name,'【普通话版】',video_name)
-outPoetryVideo(id_name+'_cp',id_name,'【四川话版】',video_name)
-outPoetryVideo(id_name+'_yy',id_name,'【粤语版】',video_name)
+vname_res = re.split(',', video_name)
+vname_len = len(vname_res)
+if vname_len>2:
+    v_pth = vname_res[0]
+    v_cp = vname_res[1]
+    v_yy = vname_res[2]
+else:
+    v_pth = v_cp = v_yy = vname_res[0]
+    
+outPoetryVideo(id_name+'_pth',id_name,'【普通话版】',v_pth)
+outPoetryVideo(id_name+'_cp',id_name,'【四川话版】',v_cp)
+outPoetryVideo(id_name+'_yy',id_name,'【粤语版】',v_yy)
 
 info='''
 ----input info---
